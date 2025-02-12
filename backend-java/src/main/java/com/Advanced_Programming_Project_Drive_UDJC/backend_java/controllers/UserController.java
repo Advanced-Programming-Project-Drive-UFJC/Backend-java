@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Advanced_Programming_Project_Drive_UDJC.backend_java.dataObjects.UserData;
 import com.Advanced_Programming_Project_Drive_UDJC.backend_java.services.UserService;
+import com.Advanced_Programming_Project_Drive_UDJC.backend_java.services.FolderService;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -29,6 +30,7 @@ public class UserController {
 
     @Autowired
     private UserService userServices;
+    private FolderService folderService;
 
 
     @GetMapping("/get_user/{username}")
@@ -44,6 +46,7 @@ public class UserController {
     @PostMapping("/add_user")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean createUser(@RequestParam String username, @RequestParam String password) {
+        folderService.sendUserRootToFastApi(username);
         return userServices.addUser(username, password);
     }
 
@@ -56,6 +59,7 @@ public class UserController {
     @DeleteMapping("/delete_user/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Boolean deleteUser(@RequestParam String username, @RequestParam String password) {
+        folderService.eliminateUserRootToFastApi(username);
         return userServices.deleteUser(username, password);
     }
 }

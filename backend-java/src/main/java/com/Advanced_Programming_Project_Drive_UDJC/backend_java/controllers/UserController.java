@@ -41,6 +41,7 @@ public class UserController {
          * username: String
          * Returns:
          * Optional<UserData>
+         * 
          */
         return userServices.getUserByName(username);
     }

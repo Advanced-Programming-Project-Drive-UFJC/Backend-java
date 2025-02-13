@@ -35,17 +35,40 @@ public class UserController {
 
     @GetMapping("/get_user/{username}")
     public Optional<UserData> getUserByName(@PathVariable("username") String username) {
+        /*
+         * This method returns the user data by its username.
+         * Args:
+         * username: String
+         * Returns:
+         * Optional<UserData>
+         */
         return userServices.getUserByName(username);
     }
 
     @PostMapping("/auth")
     public Optional<UserData> authUser(@RequestParam String username, @RequestParam String password) {
+        /*
+         * This method returns the user data if the user is authenticated.
+         * Args:
+         * username: String
+         * password: String
+         * Returns:
+         * Optional<UserData>
+         */
         return userServices.authUser(username, password);
     }
 
     @PostMapping("/add_user")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean createUser(@RequestParam String username, @RequestParam String password) {
+        /*
+         * This method creates a new user.
+         * Args:
+         * username: String
+         * password: String
+         * Returns:
+         * Boolean
+         */
         folderService.sendUserRootToFastApi(username);
         return userServices.addUser(username, password);
     }
@@ -53,12 +76,28 @@ public class UserController {
     @PatchMapping("/update_password")
     @ResponseStatus(HttpStatus.CREATED)
     public Boolean updatePassword(@RequestParam String username, @RequestParam String password) {
+        /*
+         * This method updates the password of a user.
+         * Args:
+         * username: String
+         * password: String
+         * Returns:
+         * Boolean
+         */
         return userServices.updatePassword(username, password);
     }
 
     @DeleteMapping("/delete_user/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Boolean deleteUser(@RequestParam String username, @RequestParam String password) {
+        /*
+         * This method deletes a user.
+         * Args:
+         * username: String
+         * password: String
+         * Returns:
+         * Boolean
+         */
         folderService.eliminateUserRootToFastApi(username);
         return userServices.deleteUser(username, password);
     }

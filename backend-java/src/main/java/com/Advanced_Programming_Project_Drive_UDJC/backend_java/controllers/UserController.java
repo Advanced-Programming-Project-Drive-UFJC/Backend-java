@@ -32,7 +32,7 @@ public class UserController {
     private UserService userServices;
     private FolderService folderService;
 
-
+    //TEST PASSED
     @GetMapping("/get_user/{username}")
     public Optional<UserData> getUserByName(@PathVariable("username") String username) {
         /*
@@ -45,7 +45,7 @@ public class UserController {
          */
         return userServices.getUserByName(username);
     }
-
+    //TEST PASSED
     @PostMapping("/auth")
     public Optional<UserData> authUser(@RequestParam String username, @RequestParam String password) {
         /*
@@ -58,10 +58,10 @@ public class UserController {
          */
         return userServices.authUser(username, password);
     }
-
+    //TEST PASSED
     @PostMapping("/add_user")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createUser(@RequestParam String username, @RequestParam String password) {
+    public String createUser(@RequestParam String username, @RequestParam String password) {
         /*
          * This method creates a new user.
          * Args:
@@ -70,7 +70,7 @@ public class UserController {
          * Returns:
          * Boolean
          */
-        folderService.sendUserRootToFastApi(username);
+        //folderService.sendUserRootToFastApi(username);
         return userServices.addUser(username, password);
     }
 

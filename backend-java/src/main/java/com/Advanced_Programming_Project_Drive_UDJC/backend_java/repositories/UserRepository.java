@@ -42,14 +42,14 @@ public class UserRepository {
         return Optional.empty();
     }
 
-    public boolean addUser(String username, String password) {
+    public String addUser(String username, String password) {
         for(UserData user : this.users) 
             if (user.username.equals(username)) 
-                return false;
+                return user.username;
         UserData new_user = new UserData(username, password);
         this.users.add(new_user);
         JSONOperations.saveData(this.filePath, this.users);
-        return true;
+        return "epico si funciona";
     }
 
     public boolean deleteUser(String username, String password) {

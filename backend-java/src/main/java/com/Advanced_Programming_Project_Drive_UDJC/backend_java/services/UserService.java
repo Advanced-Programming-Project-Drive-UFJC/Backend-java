@@ -24,9 +24,9 @@ public class UserService {
         return userRepository.authUser(username, password);
     }
 
-    public boolean addUser(String username, String password) {
+    public String addUser(String username, String password) {
         if (username == null || password == null) {
-            return false;
+            return "Metodo falla en repository";
         }
         return userRepository.addUser(username, password);
     }
